@@ -1,0 +1,6 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "sed -i \"s#__APP_URL__#${APP_URL}#g\" index.html",
+  "outputDirectory": "."
+}

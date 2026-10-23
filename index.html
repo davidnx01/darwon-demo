@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Darwon – ukážka</title>
+<meta name="description" content="Web, online rezervácie a administrácia pre malé prevádzky na jednom mieste. Vyskúšajte si živú ukážku fiktívneho štúdia Lumen Wellness Studio ako zákazník aj ako majiteľ.">
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Darwon – ukážka">
+<meta property="og:description" content="Web aj administrácia na jednom mieste. Vyskúšajte si rezervácie aj správu webu na fiktívnom štúdiu.">
+<meta property="og:image" content="img/og.jpg">
+<meta name="theme-color" content="#f7f3ea">
+<link rel="preload" href="fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Fraunces";font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/fraunces-latin-ext-wght-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Fraunces";font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/fraunces-latin-wght-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/inter-latin-ext-wght-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/inter-latin-wght-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+:root{
+  --bg:#f7f3ea; --bg2:#efe8d9; --ink:#26332b; --mute:#5f685c; --acc:#3f5443; --acc-d:#33463a;
+  --terra:#c4826a; --terra-ink:#9a553d; --line:#d8cfbc; --line-strong:#bfb49d;
+  --dark:#26332b; --on-dark:#f7f3ea; --on-dark-mute:#c9d1c6; --line-dark:rgba(247,243,234,.16);
+  --gut:clamp(16px,4.4vw,64px); --max:1312px; --hdr:68px;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--hdr) + 8px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;font-feature-settings:"cv11","ss01";-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+@media (min-width:1024px){body{font-size:18px}}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;letter-spacing:-.02em;color:inherit;font-optical-sizing:auto;text-wrap:balance}
+.lead,.side p,figcaption{text-wrap:pretty}
+:focus-visible{outline:3px solid var(--terra-ink);outline-offset:3px;border-radius:2px}
+.dark :focus-visible{outline-color:#e0a990}
+.skip{position:absolute;left:-9999px;top:8px;z-index:100;background:var(--ink);color:var(--bg);padding:12px 16px;border-radius:4px}
+.skip:focus{left:16px}
+.wrap{width:100%;max-width:calc(var(--max) + 2*var(--gut));margin:0 auto;padding:0 var(--gut)}
+
+/* Header */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(247,243,234,.94);backdrop-filter:saturate(1.2) blur(8px);-webkit-backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--line)}
+.hdr .wrap{height:var(--hdr);display:flex;align-items:center;gap:24px}
+.logo{font-family:var(--serif);font-size:26px;font-weight:500;letter-spacing:-.02em;text-decoration:none;line-height:1;display:inline-flex;align-items:center;min-height:44px}
+.nav{margin-left:auto;display:flex;gap:4px}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;font-size:15px;font-weight:500;text-decoration:none;color:var(--mute);border-radius:4px;transition:color .2s}
+.nav a:hover{color:var(--ink)}
+.hdr .btn{margin-left:12px}
+@media (max-width:1023px){.nav{display:none}.hdr .btn{margin-left:auto}}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 24px;border-radius:4px;border:1px solid transparent;font-family:var(--sans);font-size:16px;font-weight:600;line-height:1;letter-spacing:-.005em;text-decoration:none;white-space:nowrap;transition:background-color .2s,color .2s,border-color .2s}
+.btn-p{background:var(--acc);color:var(--bg)}
+.btn-p:hover{background:var(--acc-d)}
+.btn-s{border-color:var(--ink);color:var(--ink);background:transparent}
+.btn-s:hover{background:var(--ink);color:var(--bg)}
+.btn-l{background:var(--on-dark);color:var(--ink)}
+.btn-l:hover{background:#fff}
+.btn-ol{border-color:rgba(247,243,234,.55);color:var(--on-dark)}
+.btn-ol:hover{background:var(--on-dark);color:var(--ink)}
+.hdr .btn{height:44px;padding:0 18px;font-size:15px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+@media (max-width:560px){
+  .actions{flex-direction:column;align-items:stretch}
+  .actions .btn{width:100%}
+}
+@media (max-width:400px){.btn{font-size:15px;padding:0 14px}}
+
+.label{display:flex;align-items:baseline;gap:12px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:24px}
+.label b{font-weight:600;color:var(--terra-ink);font-variant-numeric:tabular-nums}
+.dark .label{color:var(--on-dark-mute)}
+.dark .label b{color:#e0a990}
+.lead{font-size:clamp(18px,1rem + .45vw,21px);line-height:1.55;color:var(--mute);max-width:36em}
+.dark .lead{color:var(--on-dark-mute)}
+.tlink{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px;text-decoration-color:var(--line-strong);transition:text-decoration-color .2s,color .2s}
+.tlink:hover{text-decoration-color:currentColor}
+
+/* Shots */
+.shot{margin:0}
+.shot img{width:100%;border:1px solid var(--line);border-radius:4px;background:#fff}
+.dark .shot img{border-color:var(--line-dark)}
+.shot figcaption{margin-top:16px;font-size:15px;line-height:1.5;color:var(--mute);max-width:34em}
+.shot figcaption strong{display:block;color:var(--ink);font-weight:600;font-size:16px;margin-bottom:2px}
+.dark .shot figcaption{color:var(--on-dark-mute)}
+.dark .shot figcaption strong{color:var(--on-dark)}
+
+/* Hero */
+.hero{padding:clamp(48px,8vw,112px) 0 0}
+.hero-top{display:grid;gap:32px}
+.hero .eyebrow{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-ink);margin-bottom:24px}
+.hero h1{font-size:clamp(2.55rem,1.5rem + 4.6vw,5.9rem);line-height:1.02;font-weight:380;letter-spacing:-.03em;max-width:13.5em}
+.hero .note{margin-top:20px;font-size:15px;color:var(--mute);max-width:32em}
+@media (min-width:1024px){
+  .hero-top{grid-template-columns:repeat(12,1fr);column-gap:24px;row-gap:40px}
+  .hero-top .h{grid-column:1/span 11}
+  .hero-top .lead{grid-column:1/span 5;align-self:start}
+  .hero-top .act{grid-column:7/span 6;align-self:start;justify-self:end}
+}
+.stage{position:relative;margin-top:clamp(48px,7vw,96px);aspect-ratio:100/54}
+.stage .s{position:absolute;margin:0}
+.stage .s img{width:100%;border:1px solid var(--line);border-radius:4px;background:#fff}
+.stage .s-web{left:0;top:0;width:70%}
+.stage .s-adm{right:0;top:37%;width:48%}
+.stage .s-adm img,.stage .s-mob img{box-shadow:0 0 0 clamp(4px,.8vw,10px) var(--bg)}
+.stage .s-mob{left:55%;top:41%;width:14.5%}
+.stage .s-mob2{display:none}
+@media (max-width:719px){
+  .stage{aspect-ratio:auto;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+  .stage .s{position:static;width:auto}
+  .stage .s-web,.stage .s-adm{display:none}
+  .stage .s-mob2{display:block;margin-top:48px}
+  .stage .s-mob img{box-shadow:none}
+}
+.hero-band{border-bottom:1px solid var(--line);padding-bottom:clamp(48px,6vw,80px)}
+
+/* Section rhythm */
+.sec{padding:clamp(72px,10vw,136px) 0}
+.sec-alt{background:var(--bg2)}
+.dark{background:var(--dark);color:var(--on-dark)}
+.sec h2{font-size:clamp(2.1rem,1.35rem + 3vw,4rem);line-height:1.05;font-weight:380;letter-spacing:-.028em;max-width:15em}
+.sec-head{display:grid;gap:24px;margin-bottom:clamp(48px,6vw,88px)}
+@media (min-width:1024px){
+  .sec-head{grid-template-columns:repeat(12,1fr);column-gap:24px;align-items:end}
+  .sec-head .h{grid-column:1/span 7}
+  .sec-head .lead{grid-column:8/span 5}
+}
+
+/* Modules */
+.mod-grid{display:grid;gap:48px}
+@media (min-width:1024px){
+  .mod-grid{grid-template-columns:repeat(12,1fr);column-gap:24px}
+  .mod-aside{grid-column:1/span 5}
+  .mod-aside .stick{position:sticky;top:calc(var(--hdr) + 40px)}
+  .mod-list{grid-column:7/span 6}
+}
+.mod-aside .lead{margin-top:24px}
+.mod-aside .shot{margin-top:40px}
+.mod-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink);counter-reset:m}
+.mod-list li{counter-increment:m;display:grid;grid-template-columns:44px 1fr;column-gap:16px;padding:24px 0 22px;border-bottom:1px solid var(--line)}
+.mod-list li::before{content:counter(m,decimal-leading-zero);font-size:13px;font-weight:600;color:var(--terra-ink);font-variant-numeric:tabular-nums;padding-top:9px;letter-spacing:.04em}
+.mod-list h3{font-size:clamp(1.35rem,1.1rem + .8vw,1.75rem);line-height:1.2;font-weight:430}
+.mod-list p{margin-top:6px;color:var(--mute);font-size:16px;line-height:1.55;max-width:34em}
+.mod-links{margin-top:4px;display:flex;flex-wrap:wrap;column-gap:24px}
+.mod-links a{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:15px;text-decoration:none}
+.mod-links .u{font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px;text-decoration-color:var(--line-strong);transition:text-decoration-color .2s}
+.mod-links a:hover .u{text-decoration-color:currentColor}
+.mod-links code{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--mute);font-variant-numeric:tabular-nums}
+
+/* Customer */
+.g{display:grid;gap:clamp(40px,5vw,72px) 24px}
+@media (min-width:900px){
+  .g{grid-template-columns:repeat(12,1fr)}
+  .c-res{grid-column:1/span 9}
+  .c-mob{grid-column:10/span 3;align-self:end}
+  .c-roz{grid-column:1/span 7}
+  .c-roz-t{grid-column:9/span 4;align-self:center}
+  .c-prod{grid-column:1/span 6}
+  .c-tim{grid-column:7/span 6;margin-top:clamp(0px,8vw,120px)}
+  .c-blog-t{grid-column:1/span 4;align-self:end}
+  .c-blog{grid-column:5/span 8}
+}
+@media (max-width:899px){.c-mob{max-width:300px}}
+@media (min-width:640px) and (max-width:899px){
+  .g{grid-template-columns:1fr 1fr}
+  .g>*{grid-column:1/-1}
+  .g>.c-prod,.g>.o-roz,.g>.o-pro{grid-column:1}
+  .g>.c-tim,.g>.o-slu,.g>.o-dop{grid-column:2}
+}
+.facts{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.facts li{padding:18px 0;border-bottom:1px solid var(--line)}
+.facts strong{display:block;font-family:var(--serif);font-weight:450;font-size:1.3rem;line-height:1.25;letter-spacing:-.01em}
+.facts span{display:block;margin-top:4px;color:var(--mute);font-size:16px;line-height:1.55}
+.dark .facts,.dark .facts li{border-color:var(--line-dark)}
+.dark .facts span{color:var(--on-dark-mute)}
+.side h3{font-size:clamp(1.6rem,1.2rem + 1.2vw,2.25rem);line-height:1.12;font-weight:400;letter-spacing:-.02em}
+.side p{margin-top:16px;color:var(--mute)}
+.dark .side p{color:var(--on-dark-mute)}
+.side .tlink{margin-top:12px}
+
+/* Owner */
+.o-wide{margin-bottom:clamp(56px,7vw,104px)}
+@media (min-width:900px){
+  .o-kal{grid-column:1/span 8}
+  .o-kal-t{grid-column:9/span 4;align-self:end}
+  .o-roz{grid-column:1/span 6}
+  .o-slu{grid-column:7/span 6}
+  .o-pro{grid-column:1/span 6}
+  .o-dop{grid-column:7/span 6}
+  .o-txt{grid-column:1/span 8}
+  .o-mob{grid-column:10/span 3;align-self:start}
+}
+@media (max-width:899px){.o-mob{max-width:300px}}
+@media (max-width:719px){.shot.adm img{aspect-ratio:1.285;object-fit:cover;object-position:100% 0}}
+.o-foot{margin-top:clamp(64px,8vw,112px);padding-top:40px;border-top:1px solid var(--line-dark);display:grid;gap:24px;align-items:center}
+@media (min-width:900px){.o-foot{grid-template-columns:1fr auto}}
+.o-foot p{font-family:var(--serif);font-size:clamp(1.4rem,1.1rem + 1vw,2rem);line-height:1.2;letter-spacing:-.015em;max-width:22em}
+
+/* Steps */
+.steps{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.steps li{display:grid;gap:16px 24px;padding:clamp(28px,4vw,48px) 0;border-bottom:1px solid var(--line)}
+.steps .n{font-family:var(--serif);font-size:clamp(3.5rem,2.5rem + 3vw,6rem);line-height:.85;font-weight:300;color:var(--acc);font-variant-numeric:tabular-nums}
+.steps h3{font-size:clamp(1.5rem,1.2rem + 1vw,2.1rem);line-height:1.15;font-weight:420}
+.steps p{margin-top:10px;color:var(--mute);max-width:34em}
+.steps .btn{justify-self:start}
+@media (min-width:900px){
+  .steps li{grid-template-columns:2fr 6fr 4fr;align-items:start}
+  .steps .btn{justify-self:end;margin-top:6px}
+}
+
+/* Limits */
+.lim{display:grid;gap:40px}
+@media (min-width:1024px){
+  .lim{grid-template-columns:repeat(12,1fr);column-gap:24px}
+  .lim-h{grid-column:1/span 5}
+  .lim-h .stick{position:sticky;top:calc(var(--hdr) + 40px)}
+  .lim-l{grid-column:7/span 6}
+}
+.lim-h .lead{margin-top:24px}
+.lim-l{margin:0;border-top:1px solid var(--ink)}
+.lim-l div{padding:24px 0;border-bottom:1px solid var(--line)}
+.lim-l dt{font-family:var(--serif);font-size:clamp(1.3rem,1.1rem + .6vw,1.6rem);line-height:1.2;font-weight:430;letter-spacing:-.01em}
+.lim-l dd{margin:8px 0 0;color:var(--mute);font-size:16px;line-height:1.6}
+
+/* Closing + footer */
+.close{padding:clamp(72px,10vw,136px) 0 clamp(56px,7vw,96px)}
+.close h2{font-size:clamp(2.3rem,1.4rem + 3.6vw,4.6rem);line-height:1.03;font-weight:380;letter-spacing:-.03em;max-width:14em;margin-bottom:40px}
+.ftr{border-top:1px solid var(--line);padding:32px 0 40px}
+.ftr .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:8px 32px}
+.ftr .logo{font-size:22px}
+.ftr p{color:var(--mute);font-size:15px}
+.ftr .tlink{margin-left:auto;font-size:15px}
+@media (max-width:560px){.ftr .tlink{margin-left:0}}
+</style>
+</head>
+<body id="top">
+<a class="skip" href="#obsah">Preskočiť na obsah</a>
+
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Darwon – na začiatok stránky">Darwon</a>
+    <nav class="nav" aria-label="Sekcie stránky">
+      <a href="#moduly">Obsah ukážky</a>
+      <a href="#zakaznik">Pre zákazníka</a>
+      <a href="#majitel">Pre majiteľa</a>
+      <a href="#vyskusat">Ako vyskúšať</a>
+      <a href="#obmedzenia">Obmedzenia</a>
+    </nav>
+    <a class="btn btn-p" href="__APP_URL__/">Otvoriť ukážku</a>
+  </div>
+</header>
+
+<main id="obsah">
+
+<!-- 1 · Hero -->
+<section class="hero" aria-labelledby="hero-h">
+  <div class="wrap hero-band">
+    <div class="hero-top">
+      <div class="h">
+        <p class="eyebrow">Darwon · web, rezervácie a administrácia pre malé prevádzky</p>
+        <h1 id="hero-h">Web aj administrácia na jednom mieste. Vyskúšajte si oboje.</h1>
+      </div>
+      <p class="lead">Ukážka je funkčná aplikácia, nie obrázky. Na webe štúdia sa objednáte ako zákazník a v administrácii hneď uvidíte, ako s rezerváciou pracuje majiteľ.</p>
+      <div class="act">
+        <div class="actions">
+          <a class="btn btn-p" href="__APP_URL__/">Vyskúšať ako zákazník</a>
+          <a class="btn btn-s" href="__APP_URL__/demo">Vyskúšať ako majiteľ (administrácia)</a>
+        </div>
+        <p class="note">Ukážka je fiktívne štúdio Lumen Wellness Studio. Údaje sa každú noc obnovujú do pôvodného stavu.</p>
+      </div>
+    </div>
+
+    <div class="stage" role="group" aria-label="Snímky ukážky: web, administrácia a mobil">
+      <figure class="s s-web">
+        <img src="img/opt/web-uvod-960.jpg" srcset="img/opt/web-uvod-960.jpg 960w, img/shots/web-uvod.jpg 2160w" sizes="(min-width:1440px) 920px, 70vw" width="960" height="600" alt="Úvodná stránka webu Lumen Wellness Studio s nadpisom, tlačidlom na rozvrh a otváracími hodinami" fetchpriority="high">
+      </figure>
+      <figure class="s s-adm">
+        <img src="img/opt/admin-dnes-960.jpg" srcset="img/opt/admin-dnes-960.jpg 960w, img/shots/admin-dnes.jpg 2160w" sizes="(min-width:1440px) 630px, 48vw" width="960" height="600" alt="Administrácia, obrazovka Dnes: počet dnešných termínov a rezervácie čakajúce na potvrdenie">
+      </figure>
+      <figure class="s s-mob">
+        <img src="img/opt/mobil-rezervacia-520.jpg" srcset="img/opt/mobil-rezervacia-520.jpg 520w, img/shots/mobil-rezervacia.jpg 780w" sizes="(min-width:1440px) 190px, 15vw" width="520" height="1125" alt="Online rezervácia na mobile: vybraná služba, dĺžka a výber dňa">
+      </figure>
+      <figure class="s s-mob2">
+        <img src="img/opt/mobil-admin-520.jpg" srcset="img/opt/mobil-admin-520.jpg 520w, img/shots/mobil-admin.jpg 780w" sizes="45vw" width="520" height="1125" loading="lazy" alt="Administrácia na mobile: obrazovka Dnes s rezerváciami na potvrdenie">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · Moduly -->
+<section class="sec" id="moduly" aria-labelledby="mod-h">
+  <div class="wrap mod-grid">
+    <div class="mod-aside">
+      <div class="stick">
+        <p class="label"><b>01</b> Obsah ukážky</p>
+        <h2 id="mod-h">Čo všetko ukážka obsahuje</h2>
+        <p class="lead">V ukážke sú zapnuté všetky časti naraz, aby ste si ich mohli prezrieť. Každú otvoríte priamo na webe štúdia.</p>
+        <figure class="shot">
+          <img src="img/opt/web-sluzby-960.jpg" srcset="img/opt/web-sluzby-960.jpg 960w, img/shots/web-sluzby.jpg 2160w" sizes="(min-width:1440px) 520px, (min-width:1024px) 38vw, 92vw" width="960" height="600" loading="lazy" alt="Stránka Služby a cenník s kartami masáží">
+        </figure>
+      </div>
+    </div>
+
+    <ol class="mod-list">
+      <li><div>
+        <h3>Služby a cenník</h3>
+        <p>Každá služba má vlastnú stránku s popisom, dĺžkou a cenou; pri vybraných službách je tlačidlo na objednanie.</p>
+        <div class="mod-links"><a href="__APP_URL__/sluzby"><span class="u">Otvoriť</span> <code>/sluzby</code></a></div>
+      </div></li>
+      <li><div>
+        <h3>Online rezervácia</h3>
+        <p>Zákazník si vyberie službu, dĺžku, odborníka a voľný čas a termín má potvrdený hneď.</p>
+        <div class="mod-links"><a href="__APP_URL__/rezervacia"><span class="u">Otvoriť</span> <code>/rezervacia</code></a></div>
+      </div></li>
+      <li><div>
+        <h3>Rozvrh lekcií a prihlasovanie</h3>
+        <p>Skupinové hodiny po dňoch s počtom voľných miest a prihlásením jedným tlačidlom.</p>
+        <div class="mod-links"><a href="__APP_URL__/rozvrh"><span class="u">Otvoriť</span> <code>/rozvrh</code></a></div>
+      </div></li>
+      <li><div>
+        <h3>Akcie a workshopy</h3>
+        <p>Jednorazové podujatia s dátumom a popisom, ktoré majiteľ pridáva v administrácii.</p>
+        <div class="mod-links"><a href="__APP_URL__/akcie"><span class="u">Otvoriť</span> <code>/akcie</code></a></div>
+      </div></li>
+      <li><div>
+        <h3>Požičovňa pomôcok</h3>
+        <p>Prehľad vecí, ktoré si zákazník môže u prevádzky požičať, spravovaný na jednom mieste.</p>
+        <div class="mod-links"><a href="__APP_URL__/pozicovna"><span class="u">Otvoriť</span> <code>/pozicovna</code></a></div>
+      </div></li>
+      <li><div>
+        <h3>Tím</h3>
+        <p>Predstavenie ľudí s fotkou, zameraním a odkazom na objednanie priamo k nim.</p>
+        <div class="mod-links"><a href="__APP_URL__/tim"><span class="u">Otvoriť</span> <code>/tim</code></a></div>
+      </div></li>
+      <li><div>
+        <h3>Galéria</h3>
+        <p>Fotky priestorov a práce prevádzky na jednej prehľadnej stránke.</p>
+        <div class="mod-links"><a href="__APP_URL__/galeria"><span class="u">Otvoriť</span> <code>/galeria</code></a></div>
+      </div></li>
+      <li><div>
+        <h3>Produkty a predajňa</h3>
+        <p>Katalóg s kategóriami, filtrami, variantmi a stavom skladu; zákazník pošle nezáväzný dopyt.</p>
+        <div class="mod-links"><a href="__APP_URL__/produkty"><span class="u">Otvoriť</span> <code>/produkty</code></a></div>
+      </div></li>
+      <li><div>
+        <h3>Menu a denné menu</h3>
+        <p>Stály jedálny lístok a samostatná denná ponuka, ktorú majiteľ mení podľa dňa.</p>
+        <div class="mod-links">
+          <a href="__APP_URL__/menu"><span class="u">Otvoriť</span> <code>/menu</code></a>
+          <a href="__APP_URL__/denne-menu"><span class="u">Otvoriť</span> <code>/denne-menu</code></a>
+        </div>
+      </div></li>
+      <li><div>
+        <h3>Novinky</h3>
+        <p>Blog pre oznamy, zmeny otváracích hodín a krátke články.</p>
+        <div class="mod-links"><a href="__APP_URL__/novinky"><span class="u">Otvoriť</span> <code>/novinky</code></a></div>
+      </div></li>
+      <li><div>
+        <h3>Časté otázky</h3>
+        <p>Odpovede na otázky, ktoré sa zákazníci opakovane pýtajú, na jednej stránke.</p>
+        <div class="mod-links"><a href="__APP_URL__/caste-otazky"><span class="u">Otvoriť</span> <code>/caste-otazky</code></a></div>
+      </div></li>
+      <li><div>
+        <h3>Nezáväzný dopyt</h3>
+        <p>Formulár, ktorého správy prichádzajú do administrácie medzi dopyty.</p>
+        <div class="mod-links"><a href="__APP_URL__/dopyt"><span class="u">Otvoriť</span> <code>/dopyt</code></a></div>
+      </div></li>
+      <li><div>
+        <h3>Kontakt</h3>
+        <p>Adresa, telefón a otváracie hodiny pohromade.</p>
+        <div class="mod-links"><a href="__APP_URL__/kontakt"><span class="u">Otvoriť</span> <code>/kontakt</code></a></div>
+      </div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 3 · Pre zákazníka -->
+<section class="sec sec-alt" id="zakaznik" aria-labelledby="zak-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="h">
+        <p class="label"><b>02</b> Pre zákazníka</p>
+        <h2 id="zak-h">Objednanie bez telefonovania, aj z mobilu.</h2>
+      </div>
+      <p class="lead">Zákazník si vyberie službu, odborníka a čas. Potvrdenie dostane hneď a ak mu do toho niečo príde, termín zruší odkazom v potvrdení.</p>
+    </div>
+
+    <div class="g">
+      <figure class="shot c-res">
+        <img src="img/opt/web-rezervacia-960.jpg" srcset="img/opt/web-rezervacia-960.jpg 960w, img/opt/web-rezervacia-2160.jpg 2160w" sizes="(min-width:1440px) 960px, (min-width:900px) 72vw, 92vw" width="960" height="520" loading="lazy" alt="Online rezervácia: vybraná služba, dĺžka a odborník, výber dňa a voľné časy so zhrnutím vpravo">
+        <figcaption><strong>Rezervácia krok za krokom</strong>Služba, dĺžka, kto a kedy. Obsadené dni sú označené, zhrnutie s cenou je stále na očiach.</figcaption>
+      </figure>
+      <figure class="shot c-mob">
+        <img src="img/opt/mobil-rezervacia-520.jpg" srcset="img/opt/mobil-rezervacia-520.jpg 520w, img/shots/mobil-rezervacia.jpg 780w" sizes="(min-width:900px) 300px, 300px" width="520" height="1125" loading="lazy" alt="Rezervácia na mobile s veľkými tlačidlami pre výber času">
+        <figcaption><strong>Na mobile</strong>Veľké tlačidlá, jeden stĺpec.</figcaption>
+      </figure>
+
+      <figure class="shot c-roz">
+        <img src="img/opt/web-rozvrh-960.jpg" srcset="img/opt/web-rozvrh-960.jpg 960w, img/opt/web-rozvrh-2160.jpg 2160w" sizes="(min-width:1440px) 750px, (min-width:900px) 56vw, 92vw" width="960" height="504" loading="lazy" alt="Rozvrh lekcií po dňoch s filtrom podľa typu hodiny, počtom voľných miest a tlačidlom Prihlásiť sa">
+      </figure>
+      <div class="side c-roz-t">
+        <h3>Rozvrh lekcií</h3>
+        <p>Hodiny po dňoch, filter podľa typu lekcie a počet voľných miest. Prihlásenie je jedno tlačidlo.</p>
+        <a class="tlink" href="__APP_URL__/rozvrh">Pozrieť rozvrh v ukážke</a>
+      </div>
+
+      <figure class="shot c-prod">
+        <img src="img/opt/web-produkty-960.jpg" srcset="img/opt/web-produkty-960.jpg 960w, img/opt/web-produkty-2160.jpg 2160w" sizes="(min-width:1440px) 645px, (min-width:900px) 46vw, 92vw" width="960" height="552" loading="lazy" alt="Produkty: kategórie, filtre podľa dostupnosti a vône, karty produktov s cenou a stavom skladu">
+        <figcaption><strong>Produkty</strong>Kategórie, filtre, varianty a stav skladu. Zákazník vloží produkt do dopytu a prevádzka sa mu ozve.</figcaption>
+      </figure>
+      <figure class="shot c-tim">
+        <img src="img/opt/web-tim-960.jpg" srcset="img/opt/web-tim-960.jpg 960w, img/shots/web-tim.jpg 2160w" sizes="(min-width:1440px) 645px, (min-width:900px) 46vw, 92vw" width="960" height="600" loading="lazy" alt="Stránka Náš tím s menom, zameraním, krátkym popisom a odkazom Objednať sa pri každom človeku">
+        <figcaption><strong>Tím</strong>Pri každom človeku je odkaz, ktorý otvorí rezerváciu rovno k nemu.</figcaption>
+      </figure>
+
+      <div class="side c-blog-t">
+        <h3>Novinky</h3>
+        <p>Oznamy, zmeny otváracích hodín a krátke články. Majiteľ ich píše v administrácii, na webe sú hneď.</p>
+        <a class="tlink" href="__APP_URL__/novinky">Pozrieť novinky v ukážke</a>
+      </div>
+      <figure class="shot c-blog">
+        <img src="img/opt/web-blog-960.jpg" srcset="img/opt/web-blog-960.jpg 960w, img/shots/web-blog.jpg 2160w" sizes="(min-width:1440px) 860px, (min-width:900px) 64vw, 92vw" width="960" height="600" loading="lazy" alt="Stránka Novinky s tromi článkami, dátumom a štítkom oznam">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · Pre majiteľa -->
+<section class="sec dark" id="majitel" aria-labelledby="maj-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="h">
+        <p class="label"><b>03</b> Pre majiteľa</p>
+        <h2 id="maj-h">Čo majiteľ vidí a mení sám, bez programátora.</h2>
+      </div>
+      <p class="lead">Termíny, rozvrh, služby, ceny, produkty, dopyty aj texty webu sú v jednej administrácii. Zmena je na webe po uložení.</p>
+    </div>
+
+    <figure class="shot adm o-wide">
+      <img src="img/opt/admin-dnes-960.jpg" srcset="img/opt/admin-dnes-960.jpg 960w, img/shots/admin-dnes.jpg 2160w" sizes="(min-width:1440px) 1312px, 92vw" width="960" height="600" loading="lazy" alt="Administrácia, obrazovka Dnes: dnešné termíny, klienti, čo čaká na potvrdenie a nový dopyt s tlačidlami Potvrdiť a Zamietnuť">
+      <figcaption><strong>Dnes</strong>Prvá obrazovka po prihlásení: dnešné termíny a všetko, čo čaká na potvrdenie alebo odpoveď.</figcaption>
+    </figure>
+
+    <div class="g">
+      <figure class="shot adm o-kal">
+        <img src="img/opt/admin-kalendar-960.jpg" srcset="img/opt/admin-kalendar-960.jpg 960w, img/shots/admin-kalendar.jpg 2160w" sizes="(min-width:1440px) 860px, (min-width:900px) 64vw, 92vw" width="960" height="600" loading="lazy" alt="Kalendár v administrácii: dni s počtom termínov a časová os pre každého človeka a miestnosť">
+      </figure>
+      <div class="side o-kal-t">
+        <h3>Kalendár</h3>
+        <p>Všetci ľudia a miestnosti v jednom pohľade. Kliknutím do prázdneho miesta pridáte termín, kliknutím na záznam ho otvoríte.</p>
+      </div>
+
+      <figure class="shot adm o-roz">
+        <img src="img/opt/admin-rozvrh-960.jpg" srcset="img/opt/admin-rozvrh-960.jpg 960w, img/shots/admin-rozvrh.jpg 2160w" sizes="(min-width:1440px) 645px, (min-width:900px) 46vw, 92vw" width="960" height="600" loading="lazy" alt="Rozvrh v administrácii: hodiny po dňoch s počtom prihlásených">
+        <figcaption><strong>Rozvrh</strong>Skupinové hodiny po dňoch: kto je prihlásený a kto prišiel.</figcaption>
+      </figure>
+      <figure class="shot adm o-slu">
+        <img src="img/opt/admin-sluzby-960.jpg" srcset="img/opt/admin-sluzby-960.jpg 960w, img/shots/admin-sluzby.jpg 2160w" sizes="(min-width:1440px) 645px, (min-width:900px) 46vw, 92vw" width="960" height="600" loading="lazy" alt="Služby a cenník v administrácii: masáže s cenou, dĺžkou a tlačidlom Upraviť">
+        <figcaption><strong>Služby a cenník</strong>Cena, dĺžka, popis a či sa služba dá objednať online.</figcaption>
+      </figure>
+
+      <figure class="shot adm o-pro">
+        <img src="img/opt/admin-produkty-960.jpg" srcset="img/opt/admin-produkty-960.jpg 960w, img/shots/admin-produkty.jpg 2160w" sizes="(min-width:1440px) 645px, (min-width:900px) 46vw, 92vw" width="960" height="600" loading="lazy" alt="Produkty v administrácii: vyhľadávanie, filter podľa kategórie a stavu, zoznam produktov so stavom skladu">
+        <figcaption><strong>Produkty</strong>Ceny, sklad, fotky a texty. Na webe sa zmenia hneď po uložení.</figcaption>
+      </figure>
+      <figure class="shot adm o-dop">
+        <img src="img/opt/admin-dopyty-960.jpg" srcset="img/opt/admin-dopyty-960.jpg 960w, img/shots/admin-dopyty.jpg 2160w" sizes="(min-width:1440px) 645px, (min-width:900px) 46vw, 92vw" width="960" height="600" loading="lazy" alt="Dopyty v administrácii: nová správa z formulára na webe s tlačidlami Vybavené a Otvoriť">
+        <figcaption><strong>Dopyty</strong>Správy z formulára na webe na jednom mieste, s označením vybavené.</figcaption>
+      </figure>
+
+      <figure class="shot adm o-txt">
+        <img src="img/opt/admin-texty-960.jpg" srcset="img/opt/admin-texty-960.jpg 960w, img/shots/admin-texty.jpg 2160w" sizes="(min-width:1440px) 860px, (min-width:900px) 64vw, 92vw" width="960" height="600" loading="lazy" alt="Texty a fotky webu v administrácii: návod Upraviť priamo na webe a pole s textom úvodnej stránky">
+        <figcaption><strong>Texty a fotky webu</strong>Nadpisy a texty na webe prepíšete v administrácii alebo priamo na stránke. Pôvodný text sa dá vrátiť.</figcaption>
+      </figure>
+      <figure class="shot o-mob">
+        <img src="img/opt/mobil-admin-520.jpg" srcset="img/opt/mobil-admin-520.jpg 520w, img/shots/mobil-admin.jpg 780w" sizes="300px" width="520" height="1125" loading="lazy" alt="Administrácia na mobile: obrazovka Dnes a dolná lišta s položkami Dnes, Kalendár, Rozvrh, Dopyty">
+        <figcaption><strong>Aj na telefóne</strong>Dolná lišta s tým, čo majiteľ potrebuje počas dňa.</figcaption>
+      </figure>
+    </div>
+
+    <div class="o-foot">
+      <p>V administrácii ukážky môžete zmeniť čokoľvek. V noci sa všetko vráti do pôvodného stavu.</p>
+      <a class="btn btn-l" href="__APP_URL__/demo">Otvoriť administráciu</a>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · Ako vyskúšať -->
+<section class="sec" id="vyskusat" aria-labelledby="vys-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="h">
+        <p class="label"><b>04</b> Ako si ukážku vyskúšať</p>
+        <h2 id="vys-h">Tri kroky od rezervácie po zmenu na webe.</h2>
+      </div>
+      <p class="lead">Najviac uvidíte, keď si najprv vytvoríte rezerváciu ako zákazník a potom ju nájdete v administrácii.</p>
+    </div>
+    <ol class="steps">
+      <li>
+        <span class="n" aria-hidden="true">1</span>
+        <div>
+          <h3>Otvorte web a objednajte sa</h3>
+          <p>Vyberte si službu, človeka a voľný čas. Meno a telefón môžu byť vymyslené.</p>
+        </div>
+        <a class="btn btn-p" href="__APP_URL__/">Otvoriť web štúdia</a>
+      </li>
+      <li>
+        <span class="n" aria-hidden="true">2</span>
+        <div>
+          <h3>Otvorte administráciu a nájdite svoju rezerváciu</h3>
+          <p>Uvidíte ju na obrazovke Dnes alebo v kalendári. Nové rezervácie môžete potvrdiť alebo zamietnuť.</p>
+        </div>
+        <a class="btn btn-p" href="__APP_URL__/demo">Otvoriť administráciu</a>
+      </li>
+      <li>
+        <span class="n" aria-hidden="true">3</span>
+        <div>
+          <h3>Zmeňte text, cenu alebo službu a pozrite si web</h3>
+          <p>Upravte napríklad cenu masáže alebo nadpis úvodnej stránky, uložte a otvorte web znova.</p>
+        </div>
+        <a class="btn btn-s" href="__APP_URL__/demo">Upraviť v administrácii</a>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- 6 · Obmedzenia -->
+<section class="sec sec-alt" id="obmedzenia" aria-labelledby="obm-h">
+  <div class="wrap lim">
+    <div class="lim-h">
+      <div class="stick">
+        <p class="label"><b>05</b> Obmedzenia</p>
+        <h2 id="obm-h">Čo je v ukážke vypnuté a prečo</h2>
+        <p class="lead">Ukážku používa naraz viac ľudí. Niektoré funkcie sú preto vypnuté, aby si návštevníci navzájom nezasahovali do prístupu a nikomu neodišla správa.</p>
+      </div>
+    </div>
+    <dl class="lim-l">
+      <div>
+        <dt>E-maily sa neodosielajú</dt>
+        <dd>Potvrdenia a upozornenia by odchádzali na adresy, ktoré návštevníci zadajú pri skúšaní. Na skutočnom webe sa odosielajú.</dd>
+      </div>
+      <div>
+        <dt>Zmena hesla a dvojstupňové overenie</dt>
+        <dd>Ukážkový účet zdieľajú všetci návštevníci, zmena by ostatným zablokovala prístup.</dd>
+      </div>
+      <div>
+        <dt>Správa členov</dt>
+        <dd>Pridávanie a odoberanie ľudí s prístupom do administrácie je vypnuté z rovnakého dôvodu.</dd>
+      </div>
+      <div>
+        <dt>Nahrávanie vlastných fotiek</dt>
+        <dd>Verejná ukážka neukladá súbory od návštevníkov.</dd>
+      </div>
+      <div>
+        <dt>Údaje sa obnovujú</dt>
+        <dd>Každú noc sa ukážka vráti do pôvodného stavu. Kedykoľvek to urobíte aj sami tlačidlom „Obnoviť údaje“ v hornej lište administrácie.</dd>
+      </div>
+      <div>
+        <dt>Obsah je vymyslený</dt>
+        <dd>Všetky mená, adresy, telefónne čísla a texty v ukážke sú vymyslené. Fotky sú ilustračné.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- 7 · Záver -->
+<section class="close" aria-labelledby="close-h">
+  <div class="wrap">
+    <h2 id="close-h">Najlepšie je vyskúšať si to na vlastnom telefóne.</h2>
+    <div class="actions">
+      <a class="btn btn-p" href="__APP_URL__/">Vyskúšať ako zákazník</a>
+      <a class="btn btn-s" href="__APP_URL__/demo">Vyskúšať ako majiteľ (administrácia)</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <span class="logo">Darwon</span>
+    <p>Ukážka je určená na prezentáciu klientom.</p>
+    <a class="tlink" href="#top">Späť hore</a>
+  </div>
+</footer>
+</body>
+</html>
